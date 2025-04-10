@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lösungswerkstatt – Wer hat? Wer weiß? Wer kann?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background-color: #005bbb;
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    .cta-button {
+      background-color: #ffd500;
+      color: #000;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      margin-top: 2rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    section {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    section h2 {
+      font-size: 1.8rem;
+      color: #005bbb;
+      margin-bottom: 1rem;
+    }
+    section p, section ul, section ol {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    ul li, ol li {
+      margin-bottom: 0.5rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+    }
+    #map {
+      height: 400px;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #e9ecf1;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lösungswerkstatt – Wer hat? Wer weiß? Wer kann?</h1>
+    <p>Die Community für kreative Lösungen & regionale Produktionsaufträge</p>
+    <a href="https://www.facebook.com/groups/loesungswerkstatt" class="cta-button" target="_blank">Jetzt beitreten</a>
+  </header>
+
+  <section>
+    <h2>Was ist die Lösungswerkstatt?</h2>
+    <p>
+      Die Lösungswerkstatt ist deine Plattform für:
+    </p>
+    <ul>
+      <li>🛠 Produktionsanfragen (z. B. Drehteile, 3D-Druck, Sonderanfertigungen)</li>
+      <li>📚 Wissen & Tipps (z. B. Bäume schneiden, Maschinen warten)</li>
+      <li>🤝 Vernetzung von Machern (Anbieter & Suchende in deiner Region)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>So funktioniert’s</h2>
+    <ol>
+      <li><strong>Anfrage stellen:</strong> Poste dein Anliegen mit Postleitzahl & Beschreibung.</li>
+      <li><strong>Antwort erhalten:</strong> Die Community hilft mit Wissen, Kontakten oder Angeboten.</li>
+      <li><strong>Auftrag vergeben:</strong> Schnell, unkompliziert, direkt.</li>
+    </ol>
+    <p><em>Beispiel:</em> „Suche jemanden, der 1000 M6x20-Schrauben aus Edelstahl fertigen kann. Lieferung bis Monatsende.“</p>
+  </section>
+
+  <section>
+    <h2>Mitmachen lohnt sich</h2>
+    <ul>
+      <li>✅ Für Auftraggeber: Anbieter finden – ganz ohne Plattformgebühren.</li>
+      <li>✅ Für Anbieter: Neue Kunden, spannende Projekte & gute Kontakte.</li>
+      <li>✅ Für alle: Wissen teilen, Probleme lösen – lokal & effizient.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Jetzt Mitglied werden</h2>
+    <p>
+      Tritt unserer Facebook-Community bei – kostenlos & offen für alle!<br />
+      Bereits <strong>20+ Mitglieder</strong> aus Bayern – und es werden täglich mehr.
+    </p>
+    <a href="https://www.facebook.com/groups/loesungswerkstatt" class="cta-button" target="_blank">Gruppe beitreten</a>
+  </section>
+
+  <section>
+    <h2>Stell deine Anfrage direkt hier</h2>
+    <form id="postToFacebook">
+      <input type="text" name="name" placeholder="Dein Name" required>
+      <input type="text" name="plz" placeholder="Postleitzahl" required>
+      <textarea name="anfrage" rows="6" placeholder="Beschreibe deine Anfrage (Was, Menge, Material, Zeitrahmen, etc.)" required></textarea>
+      <button type="submit" class="cta-button">Beitrag vorbereiten</button>
+    </form>
+    <p id="vorschau"></p>
+  </section>
+
+  <section>
+    <h2>Anbieter auf der Karte entdecken</h2>
+    <div id="map"></div>
+  </section>
+
+  <footer>
+    © 2025 Lösungswerkstatt – Eine Community-Initiative aus Bayern<br />
+    Kontakt: info@loesungswerkstatt.de (optional)<br />
+    Impressum | Datenschutz
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([48.1351, 11.5820], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+    L.marker([48.1351, 11.5820]).addTo(map).bindPopup('📍 München – Fertiger für Schrauben');
+    L.marker([48.5296, 12.1618]).addTo(map).bindPopup('📍 Landshut – 3D-Druck-Service');
+    L.marker([48.7532, 11.4258]).addTo(map).bindPopup('📍 Ingolstadt – Maschinenbaukontakt');
+
+    document.getElementById('postToFacebook').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = this.name.value;
+      const plz = this.plz.value;
+      const anfrage = this.anfrage.value;
+
+      const postText = `📍 Postleitzahl: ${plz}\n📌 Kategorie: Wer kann?\n💬 Anfrage:\n„${anfrage}“\n– ${name}`;
+
+      const encoded = encodeURIComponent(postText);
+      const fbURL = `https://www.facebook.com/groups/loesungswerkstatt/posts/create/?text=${encoded}`;
+
+      document.getElementById('vorschau').innerHTML = `Beitrag kopieren und <a href="${fbURL}" target="_blank">auf Facebook posten</a>. <br><textarea style="width:100%; height:120px; margin-top:1rem;">${postText}</textarea>`;
+    });
+  </script>
+</body>
+</html>
