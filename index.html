@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Die Lösungswerkstatt ist eine Plattform für kreative Lösungen, regionale Produktionsaufträge und den Wissensaustausch in der Community." />
   <title>Lösungswerkstatt – Wer hat? Wer weiß? Wer kann?</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -38,6 +39,7 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
+      max-width: 300px;
     }
     section {
       max-width: 800px;
@@ -80,78 +82,88 @@
       background-color: #e9ecf1;
       font-size: 0.9rem;
     }
+    @media (max-width: 768px) {
+      header {
+        padding: 2rem 1rem;
+      }
+      .cta-button {
+        padding: 0.8rem 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
+  <header role="banner">
     <h1>Lösungswerkstatt – Wer hat? Wer weiß? Wer kann?</h1>
     <p>Die Community für kreative Lösungen & regionale Produktionsaufträge</p>
-    <a href="https://www.facebook.com/groups/loesungswerkstatt" class="cta-button" target="_blank">Jetzt beitreten</a>
+    <a href="https://www.facebook.com/groups/loesungswerkstatt" class="cta-button" target="_blank" aria-label="Gruppe auf Facebook beitreten">Jetzt beitreten</a>
   </header>
 
-  <section>
-    <h2>Was ist die Lösungswerkstatt?</h2>
-    <p>
-      Die Lösungswerkstatt ist deine Plattform für:
-    </p>
-    <ul>
-      <li>🛠 Produktionsanfragen (z. B. Drehteile, 3D-Druck, Sonderanfertigungen)</li>
-      <li>📚 Wissen & Tipps (z. B. Bäume schneiden, Maschinen warten)</li>
-      <li>🤝 Vernetzung von Machern (Anbieter & Suchende in deiner Region)</li>
-    </ul>
-  </section>
+  <main role="main">
+    <section>
+      <h2>Was ist die Lösungswerkstatt?</h2>
+      <p>
+        Die Lösungswerkstatt ist deine Plattform für:
+      </p>
+      <ul>
+        <li>🛠 Produktionsanfragen (z. B. Drehteile, 3D-Druck, Sonderanfertigungen)</li>
+        <li>📚 Wissen & Tipps (z. B. Bäume schneiden, Maschinen warten)</li>
+        <li>🤝 Vernetzung von Machern (Anbieter & Suchende in deiner Region)</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>So funktioniert’s</h2>
-    <ol>
-      <li><strong>Anfrage stellen:</strong> Poste dein Anliegen mit Postleitzahl & Beschreibung.</li>
-      <li><strong>Antwort erhalten:</strong> Die Community hilft mit Wissen, Kontakten oder Angeboten.</li>
-      <li><strong>Auftrag vergeben:</strong> Schnell, unkompliziert, direkt.</li>
-    </ol>
-    <p><em>Beispiel:</em> „Suche jemanden, der 1000 M6x20-Schrauben aus Edelstahl fertigen kann. Lieferung bis Monatsende.“</p>
-  </section>
+    <section>
+      <h2>So funktioniert’s</h2>
+      <ol>
+        <li><strong>Anfrage stellen:</strong> Poste dein Anliegen mit Postleitzahl & Beschreibung.</li>
+        <li><strong>Antwort erhalten:</strong> Die Community hilft mit Wissen, Kontakten oder Angeboten.</li>
+        <li><strong>Auftrag vergeben:</strong> Schnell, unkompliziert, direkt.</li>
+      </ol>
+      <p><em>Beispiel:</em> „Suche jemanden, der 1000 M6x20-Schrauben aus Edelstahl fertigen kann. Lieferung bis Monatsende.“</p>
+    </section>
 
-  <section>
-    <h2>Mitmachen lohnt sich</h2>
-    <ul>
-      <li>✅ Für Auftraggeber: Anbieter finden – ganz ohne Plattformgebühren.</li>
-      <li>✅ Für Anbieter: Neue Kunden, spannende Projekte & gute Kontakte.</li>
-      <li>✅ Für alle: Wissen teilen, Probleme lösen – lokal & effizient.</li>
-    </ul>
-  </section>
+    <section>
+      <h2>Mitmachen lohnt sich</h2>
+      <ul>
+        <li>✅ Für Auftraggeber: Anbieter finden – ganz ohne Plattformgebühren.</li>
+        <li>✅ Für Anbieter: Neue Kunden, spannende Projekte & gute Kontakte.</li>
+        <li>✅ Für alle: Wissen teilen, Probleme lösen – lokal & effizient.</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Jetzt Mitglied werden</h2>
-    <p>
-      Tritt unserer Facebook-Community bei – kostenlos & offen für alle!<br />
-      Bereits <strong>20+ Mitglieder</strong> aus Bayern – und es werden täglich mehr.
-    </p>
-    <a href="https://www.facebook.com/groups/loesungswerkstatt" class="cta-button" target="_blank">Gruppe beitreten</a>
-  </section>
+    <section>
+      <h2>Jetzt Mitglied werden</h2>
+      <p>
+        Tritt unserer Facebook-Community bei – kostenlos & offen für alle!<br />
+        Bereits <strong>20+ Mitglieder</strong> aus Bayern – und es werden täglich mehr.
+      </p>
+      <a href="https://www.facebook.com/groups/loesungswerkstatt" class="cta-button" target="_blank" aria-label="Gruppe auf Facebook beitreten">Gruppe beitreten</a>
+    </section>
 
-  <section>
-    <h2>Stell deine Anfrage direkt hier</h2>
-    <form id="postToFacebook">
-      <input type="text" name="name" placeholder="Dein Name" required>
-      <input type="text" name="plz" placeholder="Postleitzahl" required>
-      <textarea name="anfrage" rows="6" placeholder="Beschreibe deine Anfrage (Was, Menge, Material, Zeitrahmen, etc.)" required></textarea>
-      <button type="submit" class="cta-button">Beitrag vorbereiten</button>
-    </form>
-    <p id="vorschau"></p>
-  </section>
+    <section>
+      <h2>Stell deine Anfrage direkt hier</h2>
+      <form id="postToFacebook">
+        <input type="text" name="name" placeholder="Dein Name" required aria-label="Dein Name">
+        <input type="text" name="plz" placeholder="Postleitzahl" required pattern="\d{5}" aria-label="Postleitzahl">
+        <textarea name="anfrage" rows="6" placeholder="Beschreibe deine Anfrage (Was, Menge, Material, Zeitrahmen, etc.)" required aria-label="Beschreibe deine Anfrage"></textarea>
+        <button type="submit" class="cta-button" aria-label="Beitrag vorbereiten">Beitrag vorbereiten</button>
+      </form>
+      <p id="vorschau"></p>
+    </section>
 
-  <section>
-    <h2>Anbieter auf der Karte entdecken</h2>
-    <div id="map"></div>
-  </section>
+    <section>
+      <h2>Anbieter auf der Karte entdecken</h2>
+      <div id="map"></div>
+    </section>
+  </main>
 
-  <footer>
+  <footer role="contentinfo">
     © 2025 Lösungswerkstatt – Eine Community-Initiative aus Bayern<br />
     Kontakt: info@loesungswerkstatt.de (optional)<br />
-    Impressum | Datenschutz
+    <a href="#">Impressum</a> | <a href="#">Datenschutz</a>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   <script>
     const map = L.map('map').setView([48.1351, 11.5820], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
